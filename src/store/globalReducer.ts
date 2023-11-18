@@ -9,12 +9,14 @@ import {
   Type_Modal_types,
 } from "@/constants/types";
 
+import { default_config } from "@/constants";
+
 /**
  * Represents the global state of the application.
  */
 interface Type_Global_State {
   user: Type_User_Data | null | undefined;
-  theme: string | null | undefined;
+  theme: "light" | "dark";
   lang: Type_Lang_Model | null | undefined;
   page: string;
   modal: {
@@ -31,8 +33,10 @@ interface Type_Global_State {
  */
 function getcookiesValues() {
   const user = Cookies.get("user");
-  const theme = Cookies.get("theme");
+  const theme = Cookies.get("theme") || default_config.default_theme;
   const lang = Cookies.get("lang");
+
+  document.documentElement.dataset.theme = theme;
 
   return {
     user: user ? JSON.parse(user) : null,
