@@ -1,14 +1,12 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
 import { AuthLayout, RootLayout, NotFountLayout } from "@/layouts";
-
-import { SplashScreen } from "@/components";
 
 import authRoutes from "@/modules/auth/index.routes";
 
 import homeRoutes from "@/modules/home/index.routes";
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
@@ -22,7 +20,3 @@ const router = createBrowserRouter([
     children: authRoutes,
   },
 ]);
-
-export default function Navigation() {
-  return <RouterProvider router={router} fallbackElement={<SplashScreen />} />;
-}

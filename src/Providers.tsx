@@ -4,12 +4,20 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { Provider } from "react-redux";
 
+import { RouterProvider as ReactRouterProvider } from "react-router-dom";
+
 import store from "@/store";
 
-export default function Providers({ children }: { children: ReactNode }) {
+import { SplashScreen } from "@/components";
+
+import { router } from "@/router";
+
+export default function Providers() {
   return (
     <ReactQueryProvider>
-      <ReduxProvider>{children}</ReduxProvider>
+      <ReduxProvider>
+        <RouterProvider />
+      </ReduxProvider>
     </ReactQueryProvider>
   );
 }
@@ -23,4 +31,10 @@ function ReactQueryProvider({ children }: { children: ReactNode }) {
 
 function ReduxProvider({ children }: { children: ReactNode }) {
   return <Provider store={store}>{children}</Provider>;
+}
+
+function RouterProvider() {
+  return (
+    <ReactRouterProvider router={router} fallbackElement={<SplashScreen />} />
+  );
 }
