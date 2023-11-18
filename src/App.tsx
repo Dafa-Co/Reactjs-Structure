@@ -1,6 +1,6 @@
 import Navigation from "@/router";
 
-import Providers from "@/router/Providers";
+import Providers from "@/Providers";
 
 export default function App() {
   return (
